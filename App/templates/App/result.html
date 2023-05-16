@@ -1,0 +1,11 @@
+<h1>Job Listing</h1>
+
+{% autoescape off %}
+    {{ job_listing }}
+
+
+<br><br><br><br><br>
+    <div class="gen-new-job-btn">
+        <a href="{% url 'create' %}" class="btn btn-secondary">Generate New Job Listing</a>
+    </div>
+{% endautoescape %}
