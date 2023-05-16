@@ -20,7 +20,7 @@ def create_job_listing(request):
                 company_values=company_values
             )
 
-            return render(request, 'App/result.html', {'job_listing': job_listing})
+            return render(request, 'App/create.html', {'job_listing': job_listing})
     else:
         form = JobListingForm()
 
