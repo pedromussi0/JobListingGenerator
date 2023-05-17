@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'JobListingsProject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'job_listings_db',
+        'USER': 'postgres',
+        'PASSWORD': '250591',
+        'HOST': 'localhost',  # If the database is on your local machine, use 'localhost' or '127.0.0.1'
+        'PORT': '5432',  # By default, PostgreSQL uses port 5432
     }
 }
 

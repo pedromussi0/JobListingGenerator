@@ -27,3 +27,9 @@ def generate_job_listing(job_position, tech_stack, company_name, company_values)
         company_values=company_values
     )
     return llm(formatted_prompt)
+
+
+
+'''
+    generate a prompt that summarizes the generated job listing into a description - 
+'''

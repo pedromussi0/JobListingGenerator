@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .forms import JobListingForm
 from .langchain_integration import *
 
+from .models import JobListing
+
 
 def create_job_listing(request):
     if request.method == 'POST':

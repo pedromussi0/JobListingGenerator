@@ -1,0 +1,74 @@
+#add years of experience needed
+
+#add the option to save a joblisting (create a button) - this button is going to append our joblisting to the db
+#create and integrate our postgres db.
+
+#after a saved joblisting, i should have the option to go through my list of saved joblistings.
+#
+#
+#        ----     mostrar job title e description na table criada ------
+#        -----      criar uma função que lida com o salvamento da job listing na database ------
+##
+#
+#
+##
+#
+#
+#
+#
+#
+#
+
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+
+##
+#
+
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+
+##
+
+#
+##
+#
+#
