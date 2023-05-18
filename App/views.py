@@ -1,7 +1,7 @@
+
 from django.shortcuts import render
 from .forms import JobListingForm
 from .langchain_integration import *
-
 from .models import JobListing
 
 
@@ -27,3 +27,17 @@ def create_job_listing(request):
         form = JobListingForm()
 
     return render(request, 'App/create.html', {'form': form})
+
+
+def save_textarea(request):
+    if request.method == 'POST':
+        content = request.POST.get('textarea_content')
+        instance = JobListing(job_listing=content)
+        instance.save()
+
+        # summarizing job listing and assigning it to description
+        summary = summarize_job_listing(job_listing=content)
+        instance.description = summary
+        instance.save()
+
+    return render(request, 'App/create.html')

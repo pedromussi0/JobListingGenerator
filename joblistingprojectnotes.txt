@@ -7,14 +7,14 @@
 #
 #
 #        ----     mostrar job title e description na table criada ------
-#        -----      criar uma função que lida com o salvamento da job listing na database ------
+#        -----    vamo testar se a description está funcionando   -----
+##       ------   if description true : começar a criar a tabela de listings html. -------
+#       -------   ao clicar na celula da tabela, redirecionar para uma página onde pode se ver o texto e editá-lo ------
+#
 ##
 #
 #
-##
-#
-#
-#
+#  ------  criar uma função de "continue generating", onde como prompt é passado o texto que está escrito ----------
 #
 #
 #
