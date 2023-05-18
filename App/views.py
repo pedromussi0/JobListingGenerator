@@ -1,5 +1,4 @@
-
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import JobListingForm
 from .langchain_integration import *
 from .models import JobListing
@@ -10,6 +9,8 @@ def create_job_listing(request):
         form = JobListingForm(request.POST)
         if form.is_valid():
             job_position = form.cleaned_data['job_position']
+            request.session['job_position'] = job_position
+
             tech_stack = form.cleaned_data['tech_stack']
             company_name = form.cleaned_data['company_name']
             company_values = form.cleaned_data['company_values']
@@ -32,12 +33,19 @@ def create_job_listing(request):
 def save_textarea(request):
     if request.method == 'POST':
         content = request.POST.get('textarea_content')
-        instance = JobListing(job_listing=content)
-        instance.save()
+        job_position = request.session.get('job_position')
 
-        # summarizing job listing and assigning it to description
-        summary = summarize_job_listing(job_listing=content)
-        instance.description = summary
-        instance.save()
+        if content and job_position:
+            instance = JobListing(
+                job_title=job_position,
+                description=summarize_job_listing(job_listing=content),
+                job_listing=content
+            )
+            instance.save()
 
-    return render(request, 'App/create.html')
+    return redirect(create_job_listing)
+
+
+def job_listings(request):
+    listings = JobListing.objects.all()
+    return render(request, 'App/listings.html', {'listings': listings})
