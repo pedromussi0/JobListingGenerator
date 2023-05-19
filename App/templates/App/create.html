@@ -25,8 +25,9 @@
                 <div class="col-sm">
                     <input type="text" class="form-control" name="company_values" placeholder="company values" aria-label="company_values">
                 </div>
-                <div class="col-12 btn-wrapper"> <!-- Use col-sm-auto to make the button take the necessary width -->
-                    <button type="submit" class="btn btn-primary">Generate Job Listing</button>
+                <div class="col-12 btn-wrapper" style="margin-top: 3rem"> <!-- Use col-sm-auto to make the button take the necessary width -->
+                    <button type="submit" class="btn btn-primary " style="background-color: #343a40; /* Set the background color to match bs-theme-dark */
+                    border-color: lightgray;">Generate Job Listing</button>
                 </div>
             </div>
         </div>
@@ -40,7 +41,10 @@
                     {{ job_listing }}
                 {% endif %}
             </textarea>
-            <button type="submit">Save</button>
+            <div class="button-container">
+                <button type="submit" class="btn btn-primary" style="background-color: #343a40; /* Set the background color to match bs-theme-dark */
+                border-color: lightgray;">Save</button>
+            </div>
         </form>
     </div>
 
