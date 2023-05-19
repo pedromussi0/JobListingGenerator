@@ -43,21 +43,18 @@
 }
 
 .table-container {
-    max-height: 40rem; /* Adjust the height as needed */
     overflow-y: auto;
+
 }
 
-.custom-table th,
-.custom-table td {
-    width: 30%; /* Adjust the width as needed */
-}
 
 .custom-table {
-    max-width: 55rem;
     margin: 0 auto;
+
 }
 
 /* Hide the scrollbar for WebKit browsers (Chrome, Safari) */
 .table-container::-webkit-scrollbar {
     display: none;
 }
+

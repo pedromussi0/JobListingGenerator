@@ -37,13 +37,25 @@ from App.models import JobListing
 def summarize_job_listing(job_listing):
     prompt = PromptTemplate(
         input_variables=["job_listing"],
-        template="You are a job recruiter, and you want to keep track of the job listings you have posted by creating"
-                 "summaries of the job listings. Summarize the following job listing by using this initial"
-                 " format: '[company name] - [job title] - [technologies mentioned] - [qualifications]'."               
-                 "Here's the job listing : '{job_listing}' "
+        template="Summarize the following job listing in the following format: '[company name]"
+                 " - [technologies mentioned]' - disregard everything else other than the format."
+                 "here's the job listing: {job_listing}"
 
     )
     formatted_prompt = prompt.format(
         job_listing=job_listing
+    )
+    return llm(formatted_prompt)
+
+
+def filter_tech_stack(tech_stack):
+    prompt = PromptTemplate(
+        input_variables=["tech_stack"],
+        template="Filter the following text extracting only the technologies mentioned in the text."
+                 " If you can only detect technologies, leave it as is. Here's the text: {tech_stack}"
+
+    )
+    formatted_prompt = prompt.format(
+        tech_stack=tech_stack
     )
     return llm(formatted_prompt)

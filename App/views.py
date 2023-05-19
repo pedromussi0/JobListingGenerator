@@ -8,10 +8,14 @@ def create_job_listing(request):
     if request.method == 'POST':
         form = JobListingForm(request.POST)
         if form.is_valid():
+            # get job position and save it in the session so it's converted later to 'job_title from model'
             job_position = form.cleaned_data['job_position']
             request.session['job_position'] = job_position
 
+            # get tech stack and assign it to the filtering function so that only technical words are passed in the form
             tech_stack = form.cleaned_data['tech_stack']
+            request.session['tech_stack'] = filter_tech_stack(tech_stack)
+
             company_name = form.cleaned_data['company_name']
             company_values = form.cleaned_data['company_values']
 

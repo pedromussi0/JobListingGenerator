@@ -13,15 +13,15 @@
             <table class="table table-striped table-hover align-middle custom-table">
                 <thead>
                     <tr>
-                        <th>Job Title</th>
-                        <th>Description</th>
+                        <th class="col-2">Job Title</th>
+                        <th class="col-10">Description</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for job in listings %}
                     <tr>
-                        <td>{{ job.job_title }}</td>
-                        <td>{{ job.description }}</td>
+                        <td class="py-3">{{ job.job_title }}</td>
+                        <td class="py-3">{{ job.description }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
