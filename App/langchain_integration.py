@@ -1,14 +1,12 @@
 import os
-
+from langchain.llms import OpenAI
+from langchain.prompts import PromptTemplate
 import openai
 from dotenv import load_dotenv
 
 load_dotenv()
 
 openai.api_key = os.getenv('OPENAI_API_KEY')
-
-from langchain.llms import OpenAI
-from langchain.prompts import PromptTemplate
 
 llm = OpenAI(temperature=0.9)
 
@@ -40,8 +38,10 @@ def summarize_job_listing(job_listing):
     prompt = PromptTemplate(
         input_variables=["job_listing"],
         template="You are a job recruiter, and you want to keep track of the job listings you have posted by creating"
-                 "summaries of the job listings. Summarize the following job listing and mention technologies used and"
-                 "company name. Keep it short and simple. Here's the job listing : '{job_listing}' "
+                 "summaries of the job listings. Summarize the following job listing by using this initial"
+                 " format: '[company name] - [job title] - [technologies mentioned] - [qualifications]'."               
+                 "Here's the job listing : '{job_listing}' "
+
     )
     formatted_prompt = prompt.format(
         job_listing=job_listing
