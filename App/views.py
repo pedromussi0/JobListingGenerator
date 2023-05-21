@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import JobListingForm
 from .langchain_integration import *
 from .models import JobListing
+from django.contrib.auth.forms import UserCreationForm
 
 
 def create_job_listing(request):
@@ -53,3 +54,17 @@ def save_textarea(request):
 def job_listings(request):
     listings = JobListing.objects.all()
     return render(request, 'App/listings.html', {'listings': listings})
+
+
+# ------------------------------- login and register views ----------------------------------------------------------
+
+def register_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')  # Assuming you have a 'login' URL pattern defined
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'App/register.html', {'form': form})
