@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from .forms import JobListingForm
 from .langchain_integration import *
-from .models import JobListing
-from django.contrib.auth.forms import UserCreationForm
+from .models import *
+
 
 
 def create_job_listing(request):
@@ -60,11 +60,11 @@ def job_listings(request):
 
 def register_view(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')  # Assuming you have a 'login' URL pattern defined
+            return redirect('login')
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
 
     return render(request, 'App/register.html', {'form': form})
