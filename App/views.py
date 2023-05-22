@@ -6,6 +6,7 @@ from .models import *
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
+from django.views.decorators.cache import cache_control
 
 
 @login_required()
@@ -66,8 +67,9 @@ def save_textarea(request):
     return redirect(create_job_listing)
 
 
+@cache_control(no_cache=True, must_revalidate=True, no_store=True)
 def job_listings(request):
-    listings = JobListing.objects.all()
+    listings = JobListing.objects.filter(creator=request.user)
     return render(request, 'App/listings.html', {'listings': listings})
 
 
