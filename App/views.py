@@ -1,4 +1,4 @@
-import django.contrib.auth.decorators
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .forms import JobListingForm
 from .langchain_integration import *
@@ -8,11 +8,17 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect
 
 
-
+@login_required()
 def create_job_listing(request):
     if request.method == 'POST':
         form = JobListingForm(request.POST)
         if form.is_valid():
+            # Get the logged-in user
+            creator = request.user
+
+            # Assign the logged-in user as the creator to the session
+            request.session['creator'] = creator.id
+
             # get job position and save it in the session so it's converted later to 'job_title from model'
             job_position = form.cleaned_data['job_position']
             request.session['job_position'] = job_position
@@ -23,6 +29,8 @@ def create_job_listing(request):
 
             company_name = form.cleaned_data['company_name']
             company_values = form.cleaned_data['company_values']
+
+            # Assign the logged-in user as the creator
 
             # Pass user input as input variables to generate_job_listing function
             job_listing = generate_job_listing(
@@ -43,12 +51,15 @@ def save_textarea(request):
     if request.method == 'POST':
         content = request.POST.get('textarea_content')
         job_position = request.session.get('job_position')
+        creator_id = request.session.get('creator')
 
-        if content and job_position:
+        if content and job_position and creator_id:
+            creator = User.objects.get(id=creator_id)
             instance = JobListing(
                 job_title=job_position,
                 description=summarize_job_listing(job_listing=content),
-                job_listing=content
+                job_listing=content,
+                creator=creator
             )
             instance.save()
 
