@@ -31,8 +31,6 @@ def generate_job_listing(job_position, tech_stack, company_name, company_values)
     generate a prompt that summarizes the generated job listing into a description - 
 '''
 
-from App.models import JobListing
-
 
 def summarize_job_listing(job_listing):
     prompt = PromptTemplate(
