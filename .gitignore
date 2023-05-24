@@ -1,2 +1,4 @@
 /App/.env
 /joblistingprojectnotes.txt
+docker-compose.yml
+.env

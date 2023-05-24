@@ -12,13 +12,19 @@ services:
     volumes:
       - .:/code
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=250591
-      - POSTGRES_DB=job_listings_db
+      - USER=postgres
+      - PASSWORD=250591  # Update the environment variable name to PASSWORD
+    env_file:
+      - .env  # Load environment variables from .env file
 
   db:
     image: postgres:latest
+    volumes:
+      - db-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=postgres
+      - POSTGRES_USER=postgres  # Update the environment variable name to POSTGRES_USER
       - POSTGRES_PASSWORD=250591
       - POSTGRES_DB=job_listings_db
+
+volumes:
+  db-data:
