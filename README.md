@@ -87,7 +87,7 @@ __Step-by-Step Guide:__
    - 5 - **Apply Database Migrations**:
        - Once the Docker containers are up and running, you have to run the migrations for the PostgreSQL database.
        - Open a new terminal window or tab.
-       - Run the following command to access the PostgreSQL container:
+       - Run the following command to access the web container:
        ---
        ```shell
        docker-compose exec web bash
