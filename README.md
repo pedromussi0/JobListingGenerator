@@ -108,7 +108,7 @@ __Step-by-Step Guide:__
        ```shell
        http://localhost:8000
        ```
-       - The application should be up and running, allowing you to interact with it.
+       - The application should be up and running.
        ---
    - **Important Notes**:
       -  Make sure that ports 8000 and 5432 (default PostgreSQL port) are not being used by any other processes on your machine. If they are occupied, you can update the ports in the docker-compose.yml file.
